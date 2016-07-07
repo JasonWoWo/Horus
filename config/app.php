@@ -158,6 +158,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        LaravelDoctrine\ORM\DoctrineServiceProvider::class
+
     ],
 
     /*
@@ -203,6 +205,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        // static Doctrine's Manager alias 
+        'EntityManager' => LaravelDoctrine\ORM\Facades\EntityManager::class,
 
     ],
 

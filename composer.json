@@ -1,12 +1,13 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "name": "horus/platformManger",
+    "description": "the platform for chart manager",
+    "keywords": ["framework", "laravel", "chart", "horus"],
     "license": "MIT",
     "type": "project",
     "require": {
         "php": ">=5.5.9",
-        "laravel/framework": "5.2.*"
+        "laravel/framework": "5.2.*",
+        "laravel-doctrine/orm": "1.1.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -20,7 +21,8 @@
             "database"
         ],
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Horus\\": "src/"
         }
     },
     "autoload-dev": {
