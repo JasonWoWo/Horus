@@ -1,2 +1,99 @@
-// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "base_scss_function";
+$color-stack:
+        (group: black, id: pale, color: #4f5d80),
+        (group: black, id: normal, color: #e67835),
+        (group: white, id: pale, color: #cad2db),
+        (group: white, id: normal, color: #FFF);
+body {
+  background: #e8e8e8;
+  //background-image: url('../image/black-Linen.png');
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #fff;
+  &:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+  &:focus {
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+
+.navbar {
+  min-height: 62px;
+  position: relative;
+  z-index: 20;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  background-color: #111;
+  line-height: 62px;
+}
+
+.navbar-inner {
+  background-color: #111;
+}
+
+.sidebar-nav {
+  width: 240px;
+  border-right: 1px solid #f0f0f0;
+  color: #cccccc;
+  background-color: #435d78;
+  float: left;
+
+
+}
+.sidebar-nav ul {
+  list-style-type: none;
+  width: 100%;
+  font-family: "Open Sans", Arial, sans-serif;
+  font-size: 13px;
+  font-weight: normal;
+  text-align: left;
+  padding: 0;
+  li {
+    display: block;
+    line-height: 40px;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+    a {
+      color: #fff;
+      cursor: pointer;
+      text-decoration: none;
+    }
+  }
+}
+.sidebar-nav-list {
+  .nav-header {
+    display: block;
+    border-bottom: 1px solid #4d4d4d;
+
+    &:hover {
+      background: #435d78;
+    }
+    .icon-fit {
+      margin-right: 0.5em;
+      margin-left: 0.75em;
+      top: 3px;
+    }
+  }
+}
+.nav-list {
+  background-color: #0d0d0d;
+  li > a {
+    padding: 5px 10px 5px 18px;
+    line-height: 25px;
+    &:focus,&:hover {
+      background-color: #cccccc;
+      color: #0d0d0d;
+    }
+  }
+}
+
+
 

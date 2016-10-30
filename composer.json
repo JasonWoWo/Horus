@@ -7,7 +7,11 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
-        "laravel-doctrine/orm": "1.1.*"
+        "laravel-doctrine/orm": "1.1.*",
+        "psr/http-message": "^1.0",
+        "barryvdh/laravel-ide-helper": "^2.2",
+        "laravelcollective/html": "^5.2",
+        "lavary/laravel-menu": "^1.6"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -43,6 +47,8 @@
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "php artisan clear-compiled",
+            "php artisan ide-helper:generate",
             "php artisan optimize"
         ]
     },

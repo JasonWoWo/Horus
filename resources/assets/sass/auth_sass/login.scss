@@ -1,0 +1,77 @@
+@import "../base_scss_function";
+
+$color-stack:
+        (group: black, id: pale, color: #4f5d80),
+        (group: black, id: normal, color: #e67835),
+        (group: white, id: pale, color: #cad2db),
+        (group: white, id: normal, color: #FFF);
+
+$marginDefault: 0px auto;
+$fontSize: 14px;
+.login_m {
+  width: 403px;
+  margin: $marginDefault;
+  height: 375px;
+  margin-top: 98px;
+}
+.login_logo {
+  text-align: center;
+  margin-top: 25px;
+}
+.login_boder {
+  height: 302px;
+}
+.login_model {
+  padding: 28px 47px 20px 47px;
+
+  label {
+    font-size: 12px;
+    font-weight: normal;
+    margin-bottom: 11px;
+    color: colorMap(black, pale);
+  }
+
+  .common_input {
+    border: 1px solid colorMap(white, pale);
+    font-size: $fontSize;
+    color: #717171;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    height: 36px;
+    width: 295px;
+    padding: 0 8px;
+  }
+
+  .input-bottom {
+    margin-bottom: 20px;
+  }
+
+  .form-forget {
+    text-align: right;
+    margin-bottom: 15px;
+    font-size: 11px;
+  }
+
+  .login-remember {
+    .sub-button {
+      float: right;
+      width: 122px;
+      height: 32px;
+      background-color: #2e2e2e;
+      color: colorMap(white, normal);
+      padding-bottom: 2px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .login-rember-sub {
+      float: left;
+      height: 33px;
+      line-height: 33px;
+      font-size: 11px;
+    }
+  }
+
+}
+
+

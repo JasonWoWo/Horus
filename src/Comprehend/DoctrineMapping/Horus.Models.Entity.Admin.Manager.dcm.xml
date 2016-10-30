@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="Horus\Models\Entity\Admin\Manager" table="managers" >
+
+        <options>
+            <option name="collate">utf8_general_ci</option>
+        </options>
+
+        <id name="id" column="id" type="integer">
+            <generator strategy="IDENTITY"/>
+        </id>
+
+        <field name="username" column="user_name" length="255" type="string" precision="0" scale="0" nullable="true" />
+        <field name="password" column="password" length="255" type="string" precision="0" scale="0" nullable="true"/>
+        <field name="token" column="token" length="255" type="string" precision="0" scale="0" nullable="true"/>
+        <field name="avatar" column="avatar" length="255" type="string" precision="0" scale="0" nullable="true" />
+        <field name="phone" column="phone" length="255" type="string" precision="0" scale="0" nullable="false" />
+        <field name="email" column="email" length="255" type="string" precision="0" scale="0" nullable="false" />
+        <field name="createOn" column="create_on" type="datetime" precision="0" length="255" scale="0" nullable="true"/>
+        <field name="visitOn" column="visit_on" type="datetime" precision="0" length="255" scale="0" nullable="true"/>
+        <field name="gender" column="gender" type="integer" precision="0" length="255" scale="0" nullable="true"/>
+    </entity>
+</doctrine-mapping>

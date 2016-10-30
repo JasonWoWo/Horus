@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use Horus\Models\Entity\Admin\Manager;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-
+use \Horus\Models\Entity\Admin\ManagerRepositoryInterface;
+use \Horus\Application\Service\ManagerAccountService AS ManagerAccountService;
 class AuthController extends Controller
 {
     /*
@@ -30,14 +34,18 @@ class AuthController extends Controller
      */
     protected $redirectTo = '/';
 
+    protected $managerAccountService;
+
     /**
      * Create a new authentication controller instance.
-     *
-     * @return void
+     * @param  ManagerAccountService $managerService
      */
-    public function __construct()
+    public function __construct(ManagerAccountService $managerService)
     {
-        $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
+//        $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
+        parent::__construct();
+        $this->managerAccountService = $managerService;
+
     }
 
     /**
@@ -55,18 +63,100 @@ class AuthController extends Controller
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
-     */
-    protected function create(array $data)
+    protected function validateLogin(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        $rules = [
+            'phone' => 'required',
+            'password' => 'required|min:6'
+        ];
+
+        $messages = [
+            'phone' => '手机号必填',
+            'password' => '密码必填',
+        ];
+        $this->validate($request, $rules, $messages);
     }
+
+    /**
+     * 登录页面
+     * @return \Illuminate\Http\Response
+     */
+    public function getLogin()
+    {
+        return $this->showLoginForm();
+    }
+    
+    public function postLogin(Request $request)
+    {
+        $this->validateLogin($request);
+
+//        if ($lockedOut = $this->hasTooManyLoginAttempts($request)) {
+//            $this->fireLockoutEvent($request);
+//
+//            return $this->sendLockoutResponse($request);
+//        }
+
+        $phone = $request->get('phone');
+        $password = $request->get('password');
+        /** @var \Horus\Models\Entity\Admin\ManagerRepositoryInterface  $managerRepository */
+        $managerRepository = $this->getRepository(ManagerRepositoryInterface::class);
+        /** @var Manager $manager */
+        $manager = $managerRepository->getQueryUserForPhoneWithPassword($phone, $password);
+        if ($manager) {
+
+            Auth::guard($this->getGuard())->login($manager, true);
+            return \Redirect::intended('backend/manager');
+        }
+        
+//        if (!$lockedOut) {
+//            $this->incrementLoginAttempts($request);
+//        }
+
+//        return $this->sendFailedLoginResponse($request);
+    }
+
+    /**
+     * 注册用户页面
+     */
+    public function getRegister()
+    {
+        return $this->showRegistrationForm();
+    }
+    
+    public function postRegister(Request $request)
+    {
+        $rules = [
+            'username' => 'required',
+            'phone' => 'required|max:255',
+            'password' => 'required',
+            'doublePassword' => 'required',
+            'email' => 'required',
+            'gender' => 'required',
+            'ticket' => 'required',
+        ];
+        $message = [
+            'phone' => '',
+            'password' => '',
+            'gender' => '',
+            'email' => '',
+            'ticket' => '',
+        ];
+        $this->validate($request, $rules, $message);
+
+        $username = $request->input('username');
+        $phone = $request->input('phone');
+        $password = $request->input('password');
+        $email = $request->input('email');
+        $ticket = $request->input('ticket');
+        $gender = $request->input('gender');
+
+        $freshManager = $this->managerAccountService->registerFreshManagerAccount($username, $phone, $password, $email, $gender);
+
+        if (!$freshManager) {
+            return Redirect::back()->withInput();
+        }
+        Auth::guard($this->getGuard())->login($freshManager, true);
+        return \Redirect::intended('backend/manager');
+    }
+
 }

@@ -150,6 +150,9 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+        Lavary\Menu\ServiceProvider::class,
+        LaravelDoctrine\ORM\DoctrineServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -158,8 +161,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        LaravelDoctrine\ORM\DoctrineServiceProvider::class
+        Collective\Html\HtmlServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class
     ],
 
     /*
@@ -206,9 +211,16 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        // HtmlFacade alias
+        'Html' => Collective\Html\HtmlFacade::class,
+        // MenuFacade alias
+        'Menu' => Lavary\Menu\Facade::class,
+
         // static Doctrine's Manager alias 
         'EntityManager' => LaravelDoctrine\ORM\Facades\EntityManager::class,
 
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
     ],
 
 ];

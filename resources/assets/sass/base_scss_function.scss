@@ -1,0 +1,10 @@
+@function colorMap($group, $shade:normal, $transparency:1){
+  @each $color in $color-stack{
+    $c-group: map_get($color, group);
+    $c-shade: map_get($color, id);
+    @if($c-group == $group and $c-shade == $shade) {
+      @return rgba(map_get($color, color), $transparency)
+    }
+  }
+}
+

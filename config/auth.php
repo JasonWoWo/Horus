@@ -65,9 +65,13 @@ return [
     */
 
     'providers' => [
+//        'users' => [
+//            'driver' => 'doctrine',
+//            'model' => \Horus\Models\Entity\User::class,
+//        ],
         'users' => [
-            'driver' => 'eloquent',
-            'model' => App\User::class,
+            'driver' => 'doctrine',
+            'model' => \Horus\Models\Entity\Admin\Manager::class
         ],
 
         // 'users' => [
