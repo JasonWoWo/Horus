@@ -6,10 +6,11 @@
     <!-- user panel (Optional) -->
     <div class="user-panel">
         <div class="pull-left image">
-            {{ Html::image('/image/default.jpg', 'User Image', array('class' => "img-circle")) }}
+            <img src="{{Auth::user()->getAvatar()}}" class="img-circle" alt="User Image">
+                {{--{{ Html::image('/image/default.jpg', 'User Image', array('class' => "img-circle")) }}--}}
         </div>
         <div class="pull-left info">
-            <p>User Name</p>
+            <p>{{Auth::user()->getUsername()}}</p>
 
             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
@@ -29,5 +30,4 @@
     <ul class="sidebar-menu">
         @include('widget.subMenu', array('items' => $menuSetting->roots()))
     </ul>
-    {{--{!! $menuSetting->asUl(array('class' => 'sidebar-menu')) !!}--}}
 </div>

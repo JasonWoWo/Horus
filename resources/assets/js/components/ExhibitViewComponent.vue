@@ -1,6 +1,6 @@
 <template>
     <div class="box-header with-border">
-        <h3 class="box-title">Default Box Example</h3>
+        <h3 class="box-title">Data Details Items</h3>
         <div class="box-tools pull-right">
             <!-- Buttons, labels, and many other things can be placed here! -->
             <!-- Here is a label for example -->
@@ -38,7 +38,7 @@
         </div>
     </div><!-- /.box-body -->
     <div class="box-footer">
-        The footer of the box
+        <!--The footer of the box-->
     </div><!-- box-footer -->
 </template>
 <style>

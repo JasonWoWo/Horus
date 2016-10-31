@@ -19,10 +19,17 @@ use Illuminate\Http\Request;
 
 class FormatComponentService extends ApplicationService
 {
+    const STATUS_CREATE_METHOD = 1;
+    const STATUS_EDIT_METHOD = 2;
+    const STATUS_DELETE_METHOD = 3;
+    const STATUS_RETRIEVE_METHOD = 4;
+
     public static $formatEntity = '';
 
     /** @var FormPropertyBuilder  $propertyCollection */
     public static $propertyCollection;
+
+    public static $statusMethod = 0;
 
     public static $exhibitDataItems = array(
         'token' => '',
@@ -164,6 +171,7 @@ class FormatComponentService extends ApplicationService
     {
         $collection = self::$propertyCollection->getPropertyCollection();
         $items = array();
+        self::$statusMethod = self::STATUS_CREATE_METHOD;
         $collection->each(function (Property $property) use (&$items) {
             $propertyType = $property->getType();
             if (empty($items[$propertyType])) {
@@ -185,7 +193,7 @@ class FormatComponentService extends ApplicationService
             'disable' => 0,
             'show' => 1,
         );
-        if ($property->getMask() & FormPropertyBuilder::MASK_DISABLE_EDIT) {
+        if ($property->getMask() & FormPropertyBuilder::MASK_DISABLE_EDIT && (self::$statusMethod != self::STATUS_CREATE_METHOD)) {
             $params['disable'] = 1;
         }
         if ($property->getMask() & FormPropertyBuilder::MASK_NOT_EDIT) {

@@ -24,7 +24,8 @@
                             <li><!-- start message -->
                                 <a href="#">
                                     <div class="pull-left">
-                                        {{ Html::image('image/default.jpg', "User Image", array('class' => "img-circle")) }}
+                                        <img src="{{Auth::user()->getAvatar()}}" class="img-circle" alt="User Image">
+{{--                                        {{ Html::image('image/default.jpg', "User Image", array('class' => "img-circle")) }}--}}
                                     </div>
                                     <h4>
                                         Sender Name
@@ -96,16 +97,18 @@
             <!-- User Account: style can be found in dropdown.less -->
             <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    {{ Html::image('image/default.jpg', "User Image", array('class' => "user-image")) }}
-                    <span class="hidden-xs">Alexander Pierce</span>
+                    <img src="{{Auth::user()->getAvatar()}}" class="user-image" alt="User Image">
+{{--                    {{ Html::image('image/default.jpg', "User Image", array('class' => "user-image")) }}--}}
+                    <span class="hidden-xs">{{Auth::user()->getUsername()}}</span>
                 </a>
                 <ul class="dropdown-menu">
                     <!-- User image -->
                     <li class="user-header">
-                        {{ Html::image('image/default.jpg', "User Image", array('class' => "img-circle")) }}
+                        <img src="{{Auth::user()->getAvatar()}}" class="img-circle" alt="User Image">
+{{--                        {{ Html::image('image/default.jpg', "User Image", array('class' => "img-circle")) }}--}}
                         <p>
-                            Alexander Pierce - Web Developer
-                            <small>Member since Nov. 2012</small>
+                            {{Auth::user()->getUsername()}} - Web Developer
+                            <small>Member since {{Auth::user()->getCreateOn()->format('Y-m-d')}}</small>
                         </p>
                     </li>
                     <!-- Menu Body -->
@@ -126,7 +129,7 @@
                             <a href="#" class="btn btn-default btn-flat">Profile</a>
                         </div>
                         <div class="pull-right">
-                            <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                            <a href="{{URL::to('auth/logout')}}" class="btn btn-default btn-flat">Sign out</a>
                         </div>
                     </li>
                 </ul>

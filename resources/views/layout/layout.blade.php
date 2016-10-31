@@ -15,6 +15,17 @@
                 @include('layout.sidebar')
             </aside>
             <div class="content-wrapper">
+                <div class="content-header">
+                    {{--<h1>--}}
+                        {{--DataDetails--}}
+                        {{--<small>Items of all</small>--}}
+                    {{--</h1>--}}
+                    {{--// 暂时将面包屑干掉--}}
+                    {{--<ol class="breadcrumb">--}}
+                        {{--<li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>--}}
+                        {{--<li class="active">Here</li>--}}
+                    {{--</ol>--}}
+                </div>
                 @yield('content')
             </div>
             <footer class="main-footer"></footer>

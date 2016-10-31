@@ -1,7 +1,7 @@
 <template>
 
     <div class="box-header with-border">
-        <h3 class="box-title">Default Box Example</h3>
+        <h3 class="box-title">Modify DataDetails Item</h3>
         <div class="box-tools pull-right">
             <!-- Buttons, labels, and many other things can be placed here! -->
             <!-- Here is a label for example -->
@@ -12,12 +12,12 @@
         <div class="col-md-12">
 
             <div class="form-horizontal">
-                <div>this is template body EnterEditView</div>
-                <div>Edit {{$route.params.id}}</div>
+                <!--<div>this is template body EnterEditView</div>-->
+                <!--<div>Edit {{$route.params.id}}</div>-->
                 <div v-for="item in items.text" class="form-group">
                     <div v-if="item.show" class="control-group">
-                        <label class="col-sm-2 control-label">{{item.label}}</label>
-                        <div class="col-sm-10 controls">
+                        <label class="col-sm-1 control-label">{{item.label}}</label>
+                        <div class="col-sm-11 controls">
                             <input v-if="item.disable" type="text" v-model="item.value" class="form-control" disabled/>
                             <input v-else type="text" v-model="item.value" class="form-control"/>
                             <!--<input type="text" v-model="item.value" class="form-control" />{{item.value}}-->
@@ -27,7 +27,7 @@
 
                 <div class="form-group" v-for="item in items.date">
                     <div v-if="item.show" class="control-group">
-                        <label class="col-sm-2 control-label"> {{item.label}}</label>
+                        <label class="col-sm-1 control-label"> {{item.label}}</label>
                         <div class="input-group date controls">
                             <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                             <input type="text" class="form-control pull-right" id="datepickder"/>
@@ -39,7 +39,7 @@
 
                 <div v-for="item in items.select" class="form-group">
                     <div v-if ="item.show" class="control-group">
-                        <label class="col-sm-2 control-label">{{item.label}}</label>
+                        <label class="col-sm-1 control-label">{{item.label}}</label>
                         <div class="col-sm-8 controls">
                             <select v-model="item.value" class="form-control " >
                                 <option v-for="option in item.options" v-bind:value="option.value">
@@ -54,11 +54,16 @@
 
                 <div v-for="item in items.radio" class="form-inline">
                     <div v-if="item.show">
-                        <label class="col-sm-2 control-label">{{item.label}}</label>
+                        <label class="col-sm-1 control-label">{{item.label}}</label>
+                        <!--<div class="radio">-->
+                            <!--<label v-for="option in item.options" class="radio-inline">-->
+                                <!--<input type="radio" v-bind:value="option.value" v-model="item.value"/>&nbsp; {{option.text}} &nbsp;&nbsp;-->
+                            <!--</label>-->
+                        <!--</div>-->
                         <div v-for="option in item.options" class="radio controls">
                             <label>
                                 <!--<input type="radio" value="{{option.value}}" v-model="item.value"/>&nbsp; {{option.text}} &nbsp;&nbsp;-->
-                                <input type="radio" v-bind:value="option.value" v-model="item.value"/>&nbsp; {{option.text}} &nbsp;&nbsp;
+                                <input type="radio" v-bind:value="option.value" v-model="item.value"/>&nbsp;&nbsp;&nbsp; {{option.text}} &nbsp;&nbsp;&nbsp;
                             </label>
                         </div>
                     </div>
@@ -68,7 +73,7 @@
 
                 <div v-for="item in items.checkbox" class="form-inline">
                     <div v-if="item.show" class="control-group">
-                        <label class="col-sm-2 control-label">{{item.label}}</label>
+                        <label class="col-sm-1 control-label">{{item.label}}</label>
                         <div v-for="checkItem in item.options" class="checkbox controls">
                             <label>
                                 <input type="checkbox" v-bind:value="checkItem.value" v-model="item.value"/>&nbsp; {{checkItem.text}} &nbsp;&nbsp;
@@ -84,7 +89,7 @@
     <div class="box-footer">
         <button v-if="isEdit" v-on:click="editPost" class="btn btn-primary btn-block" type="submit">Submit</button>
         <button v-else v-on:click="createPost" class="btn btn-primary btn-block">Submit</button>
-        <button class="btn btn-default btn-block">Cancel</button>
+        <button v-link="{ name: 'exhibition'}" class="btn btn-default btn-block">Cancel</button>
     </div><!-- box-footer -->
 
 </template>
