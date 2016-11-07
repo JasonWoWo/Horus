@@ -16,8 +16,12 @@ interface PropertyInterface
     public function setValue($value);
     
     public function setType($type);
-    
-    public function getValue();
+
+    /**
+     * @param boolean $format
+     * @return mixed
+     */
+    public function getValue($format);
 
     public function getLabel();
 

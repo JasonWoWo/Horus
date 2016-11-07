@@ -32,8 +32,12 @@ Route::group(
                     'middleware' => ['side.bar']
                 ], function () {
                     Route::get('/manager', 'Frontend\ManagerController@homeView')->name('home');
+                    Route::get('/user', 'Frontend\UserController@homeView');
+                    Route::get('/brandMgr', 'Frontend\BrandController@homeView');
                 });
                 Route::resource('manager', 'Frontend\ManagerController');
+                Route::resource('user', 'Frontend\UserController');
+                Route::resource('brandMgr', 'Frontend\BrandController');
             }
         );
     }

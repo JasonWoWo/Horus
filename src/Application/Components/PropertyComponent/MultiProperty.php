@@ -31,7 +31,7 @@ class MultiProperty extends Property
 
 
 
-    public function getValue()
+    public function getValue($format = false)
     {
         // TODO: Implement getValue() method.
         return $this->value;

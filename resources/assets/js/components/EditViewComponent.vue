@@ -109,7 +109,7 @@
             }
         },
         ready() {
-            var destination = '/manager/';
+            var destination = '/' + this.$store.state.authorization.pandoraUrl + '/';
             if (parseInt(this.$route.params.id)) {
                 destination = destination + this.$route.params.id + '/edit';
                 this.$set('isEdit', true);
@@ -126,7 +126,7 @@
         },
         methods : {
             editPost : function () {
-                var targetUrl = '/manager/' + this.$route.params.id;
+                var targetUrl = '/' + this.$store.state.authorization.pandoraUrl + '/' + this.$route.params.id;
                 var targetPostParams = this.buildQueryParams(this.$get('items'));
                 console.log(targetPostParams);
                 console.log(this.$get('token'));
@@ -138,12 +138,12 @@
                 })
             },
             createPost : function () {
-                var targetUrl = '/manager';
+                var targetUrl = '/' + this.$store.state.authorization.pandoraUrl + '?brand.id=1';
                 var targetPostParams = this.buildQueryParams(this.$get('items'));
                 this.$http.post(targetUrl, targetPostParams, {headers : {'X-CSRF-TOKEN' : this.$get('token')}}).then(function (response) {
                     var responseObj = response.json();
                     if (responseObj.success) {
-                        this.$router.go({name : 'exhibition', query : {resource : 'manager'}})
+                        this.$router.go({name : 'exhibition'})
                     }
                 })
             },

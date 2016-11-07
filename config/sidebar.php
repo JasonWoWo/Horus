@@ -26,33 +26,46 @@ $menuContent = array(
 //    ],
 
     [
-        'title' => '管理者列表',
-        'nickName' => 'manager',
-        'link' => '/backend/manager',
-        'icon' => 'fa fa-link',
+        'title' => 'OrderItems',
+        'nickName' => 'orderReport',
+        'link' => 'backend/order',
+        'icon' => 'fa fa-shopping-cart'
     ],
     [
-        'title' => '仪表盘',
-        'nickName' => 'dashboard',
+        'title' => 'ReportDashboard',
+        'nickName' => 'report',
         'link' => '#',
         'icon' => 'fa fa-dashboard',
         'subItem' => [
-            array('title' => '销售量', 'nickName' => 'sale', 'link' => 'backend/managerss', 'icon' => 'fa-square-o'),
-            array('title' => '订单列表', 'nickName' => 'count', 'link' => '#', 'icon' => 'fa-star-o'),
-            array('title' => '品牌信息列表', 'nickName' => 'managerBrand', 'link' => '#', 'icon' => 'fa-certificate'),
+            ['title' => 'saleReport', 'nickName' => 'sale', 'link' => 'backend/sale', 'icon' => 'fa fa-bar-chart-o'],
+            ['title' => 'stockReport', 'nickName' => 'stock', 'link' => 'backend/stock', 'icon' =>'fa fa-bar-chart-o'],
+            ['title' => 'clientSaleReport', 'nickName' => 'clientSale', 'link' => 'backend/clientReport', 'icon' => 'fa fa-bar-chart-o']
         ],
     ],
     [
-        'title' => '账户信息',
-        'nickName' => 'account',
-        'link' => '#',
-        'icon' => 'glyphicon glyphicon-plus',
-        'subItem' => [
-            array('title' => '用户列表', 'nickName' => 'managerList', 'link' => 'backend/manage'),
-            array('title' => '订单信息', 'nickName' => 'order', 'link' => '#'),
-            array('title' => '支付信息', 'nickName' => 'payment', 'link' => '#'),
-        ],
-    ]
+        'title' => 'BrandDashboard',
+        'nickName' => 'brand',
+        'link' => '/backend/brandMgr',
+        'icon' => 'fa fa-codepen'
+    ],
+    [
+        'title' => 'ProductDashboard',
+        'nickName' => 'product',
+        'link' => '/backend/productMgr',
+        'icon' => 'fa fa-reorder'
+    ],
+    [
+        'title' => 'AdminDashboard',
+        'nickName' => 'manager',
+        'link' => '/backend/manager',
+        'icon' => 'fa fa-user-secret',
+    ],
+    [
+        'title' => 'UserDashboard',
+        'nickName' => 'user',
+        'link' => '/backend/user',
+        'icon' => 'fa fa-user',
+    ],
 );
 
 return [

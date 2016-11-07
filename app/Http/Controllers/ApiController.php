@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 use Horus\Application\Service\FormatComponentService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 abstract class ApiController extends Controller
 {
@@ -26,6 +27,11 @@ abstract class ApiController extends Controller
      * Add Entity related property
      */
     abstract function buildPropertyCollection();
+    
+    public function homeView()
+    {
+        return view('home');
+    }
 
     /**
      * Exhibition the data related to entity

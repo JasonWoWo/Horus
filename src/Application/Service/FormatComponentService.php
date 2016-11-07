@@ -224,17 +224,17 @@ class FormatComponentService extends ApplicationService
         $collection = self::$propertyCollection->getPropertyCollection();
         foreach ($entities as $entity) {
             $collection->each(function (Property $property, $name) use ($entity) {
-                $value = $property->getValue();
+                $value = $property->getValue(true);
                 $this->_setMethod($entity, $name, $value);
             });
             $this->getEntityManager()->persist($entity);
         }
         try {
             $this->getEntityManager()->flush();
-            return true;
         } catch (\Exception $e) {
             return false;
         }
+        return true;
         
     }
 

@@ -10,18 +10,12 @@ namespace App\Http\Controllers\Frontend;
 
 
 use App\Http\Controllers\ApiController;
-use App\Http\Requests\Request;
 use Horus\Application\Components\PropertyComponent\FormPropertyBuilder AS CrudProperty;
 use Horus\Models\Entity\Admin\Manager;
 use Horus\Models\Entity\Admin\ManagerRepositoryInterface;
 
 class ManagerController extends ApiController
 {
-
-    public function homeView()
-    {
-        return view('manager');
-    }
 
     function buildPropertyCollection()
     {

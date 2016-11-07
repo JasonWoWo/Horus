@@ -27,6 +27,10 @@ class TextProperty extends Property
     {
         $this->value = $value;
         if ($this->subType == 'datetime' || $this->subType == 'date') {
+//            $this->value = new \DateTime();
+//            if (!$value) {
+//                $this->value = new \DateTime($value);
+//            }
             $this->value = new \DateTime($value);
         }
     }
@@ -52,12 +56,25 @@ class TextProperty extends Property
         return $this->name;
     }
 
-    public function getValue()
+    public function getOriginValue()
     {
         if ($this->value instanceof \DateTime) {
             $this->value = $this->value->format('Y-m-d');
         }
         return $this->value;
+    }
+
+
+    public function getValue($format = false)
+    {
+        if ($format) {
+            return $this->value;
+        }
+        if ($this->value instanceof \DateTime) {
+            $this->value = $this->value->format('Y-m-d H:i:s');
+        }
+        return $this->value;
+        
     }
 
     public function getLabel()
