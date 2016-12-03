@@ -28,19 +28,17 @@
                 <div class="form-group" v-for="item in items.date">
                     <div v-if="item.show" class="control-group">
                         <label class="col-sm-1 control-label"> {{item.label}}</label>
-                        <div class="input-group date controls">
-                            <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                            <input type="text" class="form-control pull-right" id="datepickder"/>
-                            <!--<input type="text" class="form-control pull-right" v-bind:value="item.value" id="datepicker"/>-->
+                        <div class="col-sm-11 controls">
+                            <vue-datetime-picker v-ref:picker1 name="picker1"
+                                                 :model.sync="item.value"></vue-datetime-picker>
                         </div>
                     </div>
-
                 </div>
 
                 <div v-for="item in items.select" class="form-group">
                     <div v-if ="item.show" class="control-group">
                         <label class="col-sm-1 control-label">{{item.label}}</label>
-                        <div class="col-sm-8 controls">
+                        <div class="col-sm-11 controls">
                             <select v-model="item.value" class="form-control " >
                                 <option v-for="option in item.options" v-bind:value="option.value">
                                     {{ option.text }}
@@ -99,14 +97,21 @@
     }
 </style>
 <script>
+    import picker from 'vue-datetime-picker/src/vue-datetime-picker.js';
 
+    console.log(picker);
+//    debugger;
     export default{
         data() {
             return {
                 token : '',
                 isEdit : false,
-                items : {}
+                items : {},
+                result1: null
             }
+        },
+        components : {
+            "vue-datetime-picker": picker
         },
         ready() {
             var destination = '/' + this.$store.state.authorization.pandoraUrl + '/';
@@ -129,7 +134,7 @@
                 var targetUrl = '/' + this.$store.state.authorization.pandoraUrl + '/' + this.$route.params.id;
                 var targetPostParams = this.buildQueryParams(this.$get('items'));
                 console.log(targetPostParams);
-                console.log(this.$get('token'));
+                console.log(this);
                 this.$http.put(targetUrl, targetPostParams, {headers : {'X-CSRF-TOKEN' : this.$get('token')}}).then(function (response) {
                     var responseObj = response.json();
                     if (responseObj.success) {
@@ -150,27 +155,38 @@
             buildQueryParams : function (items) {
                 var queryParams = {};
                 if (items.text) {
-                    queryParams = this.buildMappingValue(items.text, queryParams);
+                    queryParams = this.buildMappingValue('text', items.text, queryParams);
                 }
                 if (items.select) {
-                    queryParams = this.buildMappingValue(items.select, queryParams);
+                    queryParams = this.buildMappingValue('select', items.select, queryParams);
                 }
                 if (items.checkbox) {
-                    queryParams = this.buildMappingValue(items.checkbox, queryParams);
+                    queryParams = this.buildMappingValue('checkbox', items.checkbox, queryParams);
                 }
                 if (items.radio) {
-                    queryParams = this.buildMappingValue(items.radio, queryParams);
+                    queryParams = this.buildMappingValue('radio', items.radio, queryParams);
                 }
                 if (items.date) {
-                    queryParams = this.buildMappingValue(items.date, queryParams);
+                    queryParams = this.buildMappingValue('date', items.date, queryParams);
                 }
                 return queryParams;
             },
-            buildMappingValue : function (item, targetParam) {
+            buildMappingValue : function (type, item, targetParam) {
                 item.forEach(function (originItemObj) {
-                    targetParam[originItemObj.property_name] = originItemObj.value;
+                    var propertyValue = originItemObj.value;
+                    if (type == 'date') {
+                        propertyValue = this.formatDatetime(originItemObj.value);
+                    }
+                    targetParam[originItemObj.property_name] = propertyValue;
                 });
                 return targetParam;
+            },
+            formatDatetime: function(datetime) {
+                if (datetime === null) {
+                    return "[null]";
+                } else {
+                    return datetime.format("YYYY-MM-DD HH:mm:ss");
+                }
             }
         }
 

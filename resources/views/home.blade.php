@@ -4,5 +4,4 @@
         <div class="content body">
             <div id="vue-content" class="box box-solid box-info"></div>
         </div>
-    {{Html::script('js/app.js')}}
 @endsection

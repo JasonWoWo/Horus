@@ -11,5 +11,8 @@
     "vue-resource": "^0.9.3",
     "vue-router": "^0.7.13",
     "vuex": "^2.0.0"
+  },
+  "dependencies": {
+    "vue-datetime-picker": "^0.2.1"
   }
 }

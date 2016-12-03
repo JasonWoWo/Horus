@@ -33,13 +33,13 @@ class Brand extends BaseBrand
     /**
      * @var Collection
      */
-//    protected $products;
+    protected $products;
 
     public function __construct()
     {
         parent::__construct();
         
-//        $this->products = new ArrayCollection();
+        $this->products = new ArrayCollection();
     }
 
     /**
@@ -90,21 +90,21 @@ class Brand extends BaseBrand
         $this->remark = $remark;
     }
 
-//    /**
-//     * @return Collection
-//     */
-//    public function getProducts()
-//    {
-//        return $this->products;
-//    }
-//
-//    /**
-//     * @param Collection $products
-//     */
-//    public function setProducts($products)
-//    {
-//        $this->products = $products;
-//    }
+    /**
+     * @return Collection
+     */
+    public function getProducts()
+    {
+        return $this->products;
+    }
+
+    /**
+     * @param Collection $products
+     */
+    public function setProducts($products)
+    {
+        $this->products = $products;
+    }
     
 
 

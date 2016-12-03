@@ -17,5 +17,7 @@
         <field name="createOn" type="datetime" column="create_on" precision="0" scale="0" nullable="false"/>
         <field name="updateOn" type="datetime" column="update_on" precision="0" scale="0" nullable="true"/>
 
+        <one-to-many field="products" target-entity="Horus\Models\Entity\Product\Product" mapped-by="brand">
+        </one-to-many>
     </entity>
 </doctrine-mapping>

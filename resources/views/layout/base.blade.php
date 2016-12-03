@@ -20,5 +20,11 @@
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
 @yield('body')
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/moment.js/2.10.6/moment-with-locales.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/moment-timezone/0.4.0/moment-timezone-with-data.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+{{Html::script('js/app.js')}}
 <!-- END BODY -->
 </html>

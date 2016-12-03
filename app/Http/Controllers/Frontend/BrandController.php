@@ -10,7 +10,7 @@ namespace App\Http\Controllers\Frontend;
 
 
 use App\Http\Controllers\ApiController;
-use Horus\Application\Components\PropertyComponent\FormPropertyBuilder as CrudProperty;
+use Horus\Application\Components\HSPropertyComponent\HsBuilder as HsCrud;
 use Horus\Models\Entity\Brand\BrandRepositoryInterface;
 
 class BrandController extends ApiController
@@ -18,15 +18,15 @@ class BrandController extends ApiController
     function buildPropertyCollection()
     {
         // TODO: Implement buildPropertyCollection() method.
-        $formProperty = new CrudProperty();
-        $formProperty->setTextProperty('id', 'ID', CrudProperty::MASK_NOT_CREATE|CrudProperty::MASK_NOT_EDIT);
-        $formProperty->setTextProperty('name', '品牌名称');
-        $formProperty->setTextProperty('description', '品牌描述');
-        $formProperty->setTextProperty('logo', '品牌logo');
-        $formProperty->setTextProperty('officer', 'officer');
-        $formProperty->setTextProperty('createOn', '品牌创建时间', CrudProperty::MASK_NOT_EDIT|CrudProperty::MASK_NOT_CREATE);
+        $formProperty = new HsCrud();
+        $formProperty->setProperty('id', 'ID', HsCrud::MASK_NOT_CREATE|HsCrud::MASK_NOT_EDIT);
+        $formProperty->setProperty('name', '品牌名称');
+        $formProperty->setProperty('description', '品牌描述');
+        $formProperty->setProperty('logo', '品牌logo');
+        $formProperty->setProperty('officer', 'officer');
+        $formProperty->setProperty('createOn', '品牌创建时间', HsCrud::MASK_NOT_EDIT|HsCrud::MASK_NOT_CREATE);
         $this->formatService->setFormatEntity(BrandRepositoryInterface::class);
-        $this->formatService->setPropertyCollection($formProperty);
+        $this->formatService->setHsBuilder($formProperty);
 
     }
 

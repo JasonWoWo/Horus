@@ -10,7 +10,7 @@ namespace App\Http\Controllers\Frontend;
 
 
 use App\Http\Controllers\ApiController;
-use Horus\Application\Components\PropertyComponent\FormPropertyBuilder AS CrudProperty;
+use Horus\Application\Components\HSPropertyComponent\HsBuilder as HsCrud;
 use Horus\Models\Entity\Admin\Manager;
 use Horus\Models\Entity\Admin\ManagerRepositoryInterface;
 
@@ -20,14 +20,15 @@ class ManagerController extends ApiController
     function buildPropertyCollection()
     {
         // TODO: Implement buildPropertyCollection() method.
-        $formProperty = new CrudProperty();
-        $formProperty->setTextProperty('id', 'ID', CrudProperty::MASK_NOT_CREATE|CrudProperty::MASK_NOT_EDIT);
-        $formProperty->setTextProperty('username', '用户名', CrudProperty::MASK_DISABLE_EDIT);
-        $formProperty->setTextProperty('phone', '电话');
-        $formProperty->setTextProperty('email', '邮箱');
-//        $formProperty->setTextProperty('createOn', '创建时间');
-        $formProperty->setMultiProperty('gender', '性别', 0, CrudProperty::RADIO_BUILDER, Manager::$genderMapping);
+        $formProperty = new HsCrud();
+        $this->formatService->setHsBuilder($formProperty);
+        $formProperty->setProperty('id', 'ID', HsCrud::MASK_NOT_CREATE|HsCrud::MASK_NOT_EDIT);
+        $formProperty->setProperty('username', '用户名', HsCrud::MASK_DISABLE_EDIT);
+        $formProperty->setProperty('phone', '电话');
+        $formProperty->setProperty('email', '邮箱');
+        $formProperty->setProperty('createOn', '创建时间');
+        $formProperty->setProperty('gender', '性别', 0);
         $this->formatService->setFormatEntity(ManagerRepositoryInterface::class);
-        $this->formatService->setPropertyCollection($formProperty);
+        $this->formatService->getPropertyEntity('gender')->setRadioExtraParams(Manager::$genderMapping);
     }
 }
