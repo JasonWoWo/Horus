@@ -12,21 +12,34 @@ use Horus\Models\Model\Product\VariantInterface AS BaseVariantInterface;
 interface ProductVariantInterface extends BaseVariantInterface
 {
     public function setImage($image);
-    
+
+    /**
+     * Get ProductVariant's Image
+     * @return string
+     */
     public function getImage();
-    
+
+    /**
+     * Set ProductVariant's Sold
+     * @param $sold
+     */
     public function setSold($sold);
-    
+
+    /**
+     * Get ProductVariant's Sold
+     * @return int
+     */
     public function getSold();
 
     /**
+     * Obtain ProductVariant's Sku
      * @return string
      */
     public function getSku();
 
     /**
+     * Set ProductVariant's Sku
      * @param $sku
-     * @return ProductVariantInterface
      */
     public function setSku($sku);
 }

@@ -9,6 +9,8 @@
 namespace Horus\Models\Entity\Product;
 
 use Horus\Models\Model\Product\Variant AS BaseVariant;
+use Horus\Models\Model\Variation\OptionValue;
+
 class ProductVariant extends BaseVariant implements ProductVariantInterface
 {
     /**
@@ -71,5 +73,20 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
         $this->sku = $sku;
 
         return $this;
+    }
+
+    /**
+     * @param OptionValue[] $optionValueItems
+     * @return string
+     */
+    public static function buildSku($optionValueItems)
+    {
+        $values = array();
+        foreach ($optionValueItems as $optionValue) {
+            $values[$optionValue->getOption()->getId()] = $optionValue->getOption()->getId() . ":" . $optionValue->getId();
+        }
+        ksort($values);
+        
+        return implode(';', array_values($values));
     }
 }

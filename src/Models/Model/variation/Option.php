@@ -11,48 +11,63 @@ namespace Horus\Models\Model\Variation;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Horus\Models\Model\Product\Product;
 
 class Option implements OptionInterface
 {
     /**
+     * 属性类的Id
      * @var int
      */
     protected $id;
 
     /**
+     * 属性类的描述信息
      * @var string
      */
     protected $name;
 
     /**
+     * 属性类的展示信息
      * @var string
      */
     protected $presentation;
 
     /**
+     * 属性类的创建时间
      * @var \DateTime
      */
     protected $createAt;
 
     /**
+     * 属性类的更新时间
      * @var \DateTime
      */
     protected $updateAt;
     
     /**
+     * 属性类的删除时间
      * @var \DateTime
      */
     protected $deleteAt;
 
     /**
+     * 属性类的权重
      * @var int
      */
     protected $priority;
 
     /**
+     * 属性类关联的属性值
      * @var OptionValue
      */
     protected $optionValues;
+
+    /**
+     * 属性类关联的商品信息
+     * @var Product
+     */
+    protected $product;
     
     public function __construct()
     {
@@ -103,6 +118,9 @@ class Option implements OptionInterface
         return $this;
     }
 
+    /**
+     * @return ArrayCollection|OptionValue[]
+     */
     public function getOptionValues()
     {
         return $this->optionValues;
@@ -170,6 +188,24 @@ class Option implements OptionInterface
     public function setPriority($priority)
     {
         $this->priority = $priority;
+    }
+
+    /**
+     * @return Product
+     */
+    public function getProduct()
+    {
+        return $this->product;
+    }
+
+    /**
+     * @param Product $product
+     * @return $this
+     */
+    public function setProduct(Product $product)
+    {
+        $this->product = $product;
+        return $this;
     }
 
 }

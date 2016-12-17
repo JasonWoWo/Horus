@@ -14,6 +14,7 @@ use Horus\Application\Components\HSPropertyComponent\HsBuilder as HsCrud;
 use Horus\Models\Entity\Product\ProductRepositoryInterface;
 use Horus\Application\Service\FormatService;
 use Horus\Application\Service\ProductService;
+use Illuminate\Http\Request;
 
 
 class ProductController extends ApiController
@@ -48,5 +49,21 @@ class ProductController extends ApiController
         if (!$product) {
             return false;
         }
+        $skuDetail = array();
+        $option = $this->productService->getBundleOptions($product);
+        $skuDetail['options'] = $option;
+        $variants = $this->productService->getBundleVariants($product);
+        $skuDetail['variants'] = $variants;
+    }
+
+    public function skuDetailSave(Request $request)
+    {
+        $productId = $request->get('id');
+        $product = $this->productService->getValidateProduct($productId);
+        if (!$product) {
+            return false;
+        }
+        $bundles = $request->get('bundles');
+        $this->productService->bundlesOnSave($product, $bundles);
     }
 }

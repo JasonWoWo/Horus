@@ -12,5 +12,9 @@ use Horus\Models\Entity\RepositoryInterface as BaseServiceRepositoryInterface;
 
 interface ProductRepositoryInterface extends BaseServiceRepositoryInterface
 {
+    /**
+     * @param $id
+     * @return Product
+     */
     public function getProductById($id);
 }

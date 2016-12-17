@@ -42,5 +42,7 @@ Route::group(
                 Route::resource('productMgr', 'Frontend\ProductController');
             }
         );
+
     }
 );
+//Route::post('productMgr/sku', 'Frontend\ProductController@skuDetailSave');

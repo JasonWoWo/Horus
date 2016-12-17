@@ -7,5 +7,7 @@ return [
         Horus\Models\Entity\Brand\BrandRepositoryInterface::class => Horus\Comprehend\Repository\Brand\BrandRepository::class,
         Horus\Models\Entity\Product\ProductRepositoryInterface::class => \Horus\Comprehend\Repository\Product\ProductRepository::class,
         Horus\Models\Entity\Product\ProductOptionRepositoryInterface::class => Horus\Comprehend\Repository\Product\ProductOptionRepository::class,
+        Horus\Models\Entity\Product\ProductOptionValueRepositoryInterface::class => Horus\Comprehend\Repository\Product\ProductOptionValueRepository::class,
+        Horus\Models\Entity\Product\ProductVariantRepositoryInterface::class => Horus\Comprehend\Repository\Product\ProductVariantRepository::class
     ],
 ];

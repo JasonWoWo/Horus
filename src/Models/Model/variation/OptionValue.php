@@ -17,21 +17,25 @@ class OptionValue implements OptionValueInterface
     protected $id;
 
     /**
+     * 属性值的描述信息
      * @var string
      */
     protected $value;
 
     /**
+     * 删除时间
      * @var \DateTime
      */
     protected $deleteAt;
 
     /**
+     * 属性的优先级
      * @var int
      */
     protected $priority;
 
     /**
+     * 属性的品类
      * @var Option
      */
     protected $option;

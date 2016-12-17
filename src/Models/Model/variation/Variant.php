@@ -9,6 +9,9 @@
 namespace Horus\Models\Model\Variation;
 
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Horus\Models\Model\Product\Product;
+
 class Variant implements VariantInterface
 {
     /**
@@ -32,13 +35,14 @@ class Variant implements VariantInterface
     protected $deleteAt;
 
     /**
-     * @var OptionValueInterface
+     * @var ArrayCollection|OptionValueInterface
      */
     protected $options;
     
     public function __construct()
     {
         $this->updateAt = new \DateTime();
+        $this->options = new ArrayCollection();
         $this->deleteAt = NULL;
     }
 
@@ -62,14 +66,19 @@ class Variant implements VariantInterface
     }
 
     /**
-     * @param OptionValueInterface $optionValue
+     * @param Product $product
      * @return $this
      */
-    public function setObject(OptionValueInterface $optionValue)
+    public function setObject(Product $product)
     {
-        $this->object = $optionValue;
+        $this->object = $product;
         
         return $this;
+    }
+    
+    public function getObject()
+    {
+        return $this->object;
     }
 
     /**
@@ -114,8 +123,33 @@ class Variant implements VariantInterface
         return $this;
     }
 
+    public function hasOption(OptionValueInterface $option)
+    {
+        return $this->options->contains($option);
+    }
+
+    public function removeOption(OptionValueInterface $option)
+    {
+        if ($this->hasOption($option)) {
+            $this->options->removeElement($option);
+        }
+        return $this;
+    }
+
+    public function addOption(OptionValueInterface $option)
+    {
+        if (!$this->hasOption($option)) {
+            $this->options->add($option);
+        }
+        return $this;
+    }
+
+
+    /**
+     * @return ArrayCollection|OptionValueInterface
+     */
     public function getOptions()
     {
-        $this->options;
+       return $this->options;
     }
 }
