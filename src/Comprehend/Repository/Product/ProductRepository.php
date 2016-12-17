@@ -20,8 +20,18 @@ class ProductRepository extends BaseMappingRepository implements ProductReposito
         return Product::class;
     }
 
+    /**
+     * 根据商品ID获取商品的详细信息
+     * @param $id
+     * @return Product|false
+     */
     public function getProductById($id)
     {
-
+        /** @var Product $product */
+        $product = $this->getEntityManager()->getRepository($this->entity())->find($id);
+        if (!$product) {
+            return false;
+        }
+        return $product;
     }
 }

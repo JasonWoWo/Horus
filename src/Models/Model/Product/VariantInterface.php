@@ -18,4 +18,11 @@ interface VariantInterface extends RootVariantInterface
     public function getOriPrice();
     
     public function setOriPrice($oriPrice);
+    
+    public function getOnHand();
+
+    /**
+     * @param $stock
+     */
+    public function setOnHand($stock);
 }

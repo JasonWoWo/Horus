@@ -34,5 +34,8 @@
                 <join-column name="brand_id" referenced-column-name="id" nullable="false"/>
             </join-columns>
         </many-to-one>
+
+        <one-to-many target-entity="Horus\Models\Entity\Product\ProductVariant" mapped-by="object" field="variants">
+        </one-to-many>
     </entity>
 </doctrine-mapping>

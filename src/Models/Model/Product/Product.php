@@ -9,7 +9,10 @@
 namespace Horus\Models\Model\Product;
 
 
-class Product
+use Doctrine\Common\Collections\ArrayCollection;
+use Horus\Models\Entity\Product\ProductVariantInterface;
+
+class Product implements ProductInterface
 {
     /**
      * @var int
@@ -50,12 +53,18 @@ class Product
      * @var string
      */
     protected $label = '';
+
+    /**
+     * @var ProductVariantInterface[]
+     */
+    protected $variants;
     
     public function __construct()
     {
         $this->createOn = new \DateTime();
         $this->updateOn = new \DateTime();
         $this->availableOn = new \DateTime();
+        $this->variants = new ArrayCollection();
     }
 
     /**
@@ -185,5 +194,17 @@ class Product
     {
         $this->label = $label;
     }
-    
+
+    public function setVariants(ProductVariantInterface $variant)
+    {
+        $this->variants = $variant;
+        
+        return $this;
+    }
+
+    public function getVariants()
+    {
+        return $this->variants;
+    }
+
 }

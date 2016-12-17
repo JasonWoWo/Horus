@@ -25,6 +25,12 @@ class Variant extends RootVariant implements VariantInterface
      */
     protected $oriPrice = 0;
 
+    /**
+     * Product Stock
+     * @var int
+     */
+    protected $onHand = 0;
+
     
     public function getPrice()
     {
@@ -46,6 +52,18 @@ class Variant extends RootVariant implements VariantInterface
     public function setOriPrice($oriPrice)
     {
         $this->oriPrice = $oriPrice;
+        
+        return $this;
+    }
+
+    public function getOnHand()
+    {
+        return $this->onHand;
+    }
+
+    public function setOnHand($stock)
+    {
+        $this->onHand = $stock;
         
         return $this;
     }

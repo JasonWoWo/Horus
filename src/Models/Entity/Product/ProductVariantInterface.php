@@ -18,4 +18,15 @@ interface ProductVariantInterface extends BaseVariantInterface
     public function setSold($sold);
     
     public function getSold();
+
+    /**
+     * @return string
+     */
+    public function getSku();
+
+    /**
+     * @param $sku
+     * @return ProductVariantInterface
+     */
+    public function setSku($sku);
 }

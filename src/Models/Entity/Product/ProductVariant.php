@@ -60,4 +60,16 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
     {
         return $this->sold;
     }
+
+    public function getSku()
+    {
+        return $this->sku;
+    }
+
+    public function setSku($sku)
+    {
+        $this->sku = $sku;
+
+        return $this;
+    }
 }

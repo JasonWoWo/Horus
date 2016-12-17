@@ -12,10 +12,19 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\ApiController;
 use Horus\Application\Components\HSPropertyComponent\HsBuilder as HsCrud;
 use Horus\Models\Entity\Product\ProductRepositoryInterface;
+use Horus\Application\Service\FormatService;
+use Horus\Application\Service\ProductService;
 
 
 class ProductController extends ApiController
 {
+    protected $productService;
+    
+    public function __construct(FormatService $formatService, ProductService $productService)
+    {
+        parent::__construct($formatService);
+        $this->productService = $productService;
+    }
 
     public function buildPropertyCollection()
     {
@@ -31,5 +40,13 @@ class ProductController extends ApiController
         $formProperty->setProperty('createOn', '创建时间');
         $this->formatService->setFormatEntity(ProductRepositoryInterface::class);
         $this->formatService->setHsBuilder($formProperty);
+    }
+    
+    public function skuDetailItems($id)
+    {
+        $product = $this->productService->getValidateProduct($id);
+        if (!$product) {
+            return false;
+        }
     }
 }

@@ -24,7 +24,10 @@ interface OptionInterface
     public function getPresentation();
     
     public function setOptionValues(Collection $optionValues);
-    
+
+    /**
+     * @return OptionValueInterface[]
+     */
     public function getOptionValues();
 
     public function setUpdateAt($updateOn);
