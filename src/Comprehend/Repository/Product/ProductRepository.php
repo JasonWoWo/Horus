@@ -28,7 +28,9 @@ class ProductRepository extends BaseMappingRepository implements ProductReposito
     public function getProductById($id)
     {
         /** @var Product $product */
-        $product = $this->getEntityManager()->getRepository($this->entity())->find($id);
+        $product = $this->find($id);
+        // getEntityManage()->getRepository() 这种方式最好不要适用 违背设计初衷
+//        $product = $this->getEntityManager()->getRepository($this->entity())->find($id);
         if (!$product) {
             return false;
         }

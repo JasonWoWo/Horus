@@ -116,7 +116,7 @@ class ProductService extends ApplicationService
                 }
                 $optObj->setDeleteAt(Null);
             } else {
-//                $optObj= $this->productOptionRepo->findOneBy(['product' => $product, 'presentation' => $optLabel]);
+//                $optObj= $this->productOptionRepo->findOneBy(['product' => $product, 'presentation' => $optLabel], ['id' => 'DESC']);
                 $optObj = $this->getEntityManager()
                     ->getRepository($this->productOptionRepo->entity())
                     ->findOneBy(['product' => $product, 'presentation' => $optLabel], ['id' => 'DESC']);

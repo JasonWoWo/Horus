@@ -28,7 +28,8 @@ class ProductOptionRepository extends BaseMappingRepository implements  ProductO
     public function getProductOptions(Product $product)
     {
         /** @var OptionInterface[] $options */
-        $options = $this->getEntityManager()->getRepository($this->entity())->findBy(['product' => $product->getId()]);
+        $options = $this->findBy(['product' => $product->getId()]);
+//        $options = $this->getEntityManager()->getRepository($this->entity())->findBy(['product' => $product->getId()]);
         if (!$options) {
             return false;
         }

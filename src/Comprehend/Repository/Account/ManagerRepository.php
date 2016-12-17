@@ -28,6 +28,13 @@ class ManagerRepository extends BaseMappingRepository implements ManagerReposito
         $queryBuilder->setParameter('phone', $phone);
         $queryBuilder->setParameter('password', $password);
         $manager = $queryBuilder->getQuery()->getSingleResult();
+        
+        // 第二种构造查询的方法
+//        $queryBuilder = $this->createQueryBuilder('manager');
+//        $queryBuilder->where("manager.phone = :phone")->andWhere("manager.password = :password");
+//        $queryBuilder->setParameter('phone', $phone);
+//        $queryBuilder->setParameter('password', $password);
+//        $manager = $queryBuilder->getQuery()->getSingleResult();
         return $manager;
     }
 }
